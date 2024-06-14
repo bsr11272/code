@@ -14,10 +14,10 @@ data = load_data()
 
 # Sidebar controls for interactivity
 column = st.sidebar.selectbox("Choose the column for histogram", data.select_dtypes(include=[np.number]).columns.tolist())
-bins = st.sidebar.slider("Select number of bins", min_value=10, max_value=100, value=30)
+bins = st.sidebar.slider("Select size of bin", min_value=10, max_value=100, value=30)
 
 # Create the histogram using seaborn for better aesthetics and functionality
-st.write(f"Histogram for {column}")
+st.write(f"Histogram for {column} with Bin Size = {bins}")
 fig, ax = plt.subplots()
-sns.histplot(data[column].dropna(), bins=bins, kde=False, ax=ax, color='blue')  # Use seaborn's histplot
+sns.histplot(data[column].dropna(), binwidth=bins, kde=False, ax=ax, color='blue')  # Use seaborn's histplot
 st.pyplot(fig)
