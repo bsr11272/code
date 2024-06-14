@@ -5,7 +5,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Load your data
-st.cache_data   # This decorator helps cache the data loading for speed and efficiency
+@st.cache_data   # This decorator helps cache the data loading for speed and efficiency
 def load_data():
     data = pd.read_csv('./data/abalone.csv')
     return data
