@@ -1,16 +1,17 @@
 import streamlit as st
 import pandas as pd
 import seaborn as sns
+import numpy as np
 import matplotlib.pyplot as plt
 
 # Set the page config as the very first Streamlit command
 st.set_page_config(page_title="Histogram Analysis", layout="wide", initial_sidebar_state="expanded")
 
 # Set the aesthetics for the plot
-sns.set(style="whitegrid")  # Sets the style of the plot to include gridlines
+sns.set_theme(style="whitegrid")  # Sets the style of the plot to include gridlines
 
 # Decorator for caching data loading
-@st.experimental_memo
+@st.cache_data
 def load_data():
     return pd.read_csv('./data/abalone.csv')
 
@@ -35,6 +36,6 @@ st.pyplot(fig)
 # Utilize columns or expander for better layout management
 with st.expander("See Explanation"):
     st.write("""
-        This histogram represents the distribution of the selected column from the Abalone dataset.
+        This histogram represents the distribution of the column {column} from the Abalone dataset.
         Use the sidebar controls to change the parameters and customize the visualization.
     """)
