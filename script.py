@@ -17,7 +17,7 @@ data = load_data()
 # Sidebar controls for interactivity
 st.sidebar.header('Histogram Settings')
 column = st.sidebar.selectbox("Choose the column for histogram", data.select_dtypes(include=[np.number]).columns.tolist())
-bins = st.sidebar.slider("Select number of bins", min_value=10, max_value=100, value=30)
+bins = st.sidebar.slider("Select number of bins", min_value=10, max_value=1000, value=30)
 kde = st.sidebar.checkbox("Show KDE", value=False)  # Adds an option to toggle KDE
 color = st.sidebar.color_picker("Pick a color", '#0000ff')  # Allows users to pick a histogram color
 
