@@ -3,6 +3,9 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+# Set the page config as the very first Streamlit command
+st.set_page_config(page_title="Histogram Analysis", layout="wide", initial_sidebar_state="expanded")
+
 # Set the aesthetics for the plot
 sns.set(style="whitegrid")  # Sets the style of the plot to include gridlines
 
@@ -13,10 +16,7 @@ def load_data():
 
 data = load_data()
 
-# Configure page settings
-st.set_page_config(page_title="Histogram Analysis", layout="wide", initial_sidebar_state="expanded")
-
-# Organize sidebar
+# Sidebar controls for interactivity
 st.sidebar.header('Histogram Settings')
 column = st.sidebar.selectbox("Choose the column for histogram", data.select_dtypes(include=[np.number]).columns.tolist())
 bins = st.sidebar.slider("Select number of bins", min_value=10, max_value=100, value=30)
