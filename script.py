@@ -4,8 +4,6 @@ import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Set the page config as the very first Streamlit command
-st.set_page_config(page_title="Histogram Analysis", layout="wide", initial_sidebar_state="expanded")
 
 # Set the aesthetics for the plot
 sns.set_theme(style="whitegrid")  # Sets the style of the plot to include gridlines
@@ -25,17 +23,21 @@ kde = st.sidebar.checkbox("Show KDE", value=False)  # Adds an option to toggle K
 color = st.sidebar.color_picker("Pick a color", '#0000ff')  # Allows users to pick a histogram color
 
 # Create the histogram using seaborn for better aesthetics and functionality
-st.write(f"Histogram for {column} with {bins} bins")
+st.markdown(f"""<div style='text-align: center;'>
+            <strong style='font-size: 18px; color: darkblue;'>Histogram for {column} with {bins} bins</strong></div>""", 
+            unsafe_allow_html=True)
+
 fig, ax = plt.subplots()
 sns.histplot(data[column].dropna(), bins=bins, kde=kde, ax=ax, color=color)  # Use chosen color and KDE toggle
-ax.set_title("Distribution of " + column, fontsize=16)  # Set title with larger font
 ax.set_xlabel(column, fontsize=14)  # Set x-label with custom font size
 ax.set_ylabel("Frequency", fontsize=14)  # Set y-label with custom font size
 st.pyplot(fig)
 
+
 # Utilize columns or expander for better layout management
 with st.expander("See Explanation"):
-    st.write("""
-        This histogram represents the distribution of the column {column} from the Abalone dataset.
+    st.markdown(f"""
+        This histogram represents the distribution of the column **{column}** from the Abalone dataset.
+        
         Use the sidebar controls to change the parameters and customize the visualization.
-    """)
+    """, unsafe_allow_html=True)
