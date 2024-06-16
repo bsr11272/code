@@ -72,7 +72,7 @@ with st.expander("See Explanation"):
         - `sns.histplot(data['your_column'], bins=30, kde=False, ax=ax, color='blue')`: Creates a histogram for 'your_column' from the dataset. The number of bins is set to 30, KDE (Kernel Density Estimation) is turned off, and the plot color is set to blue.
         - `ax.set_xlabel('Your Column')`: Sets the label for the x-axis.
         - `ax.set_ylabel('Frequency')`: Sets the label for the y-axis.
-        - `plt.show()`: Displays the plot. In the context of Streamlit, `st.pyplot(fig)` is used instead to render the plot within the app.
+        - `plt.show()`: Displays the plot.
 
         This code snippet shows how to generate a basic histogram, which is useful for understanding the distribution of data points across a single variable.
     """, unsafe_allow_html=True)
