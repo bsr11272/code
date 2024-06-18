@@ -8,13 +8,13 @@ import matplotlib.pyplot as plt
 sns.set_theme(style="whitegrid")  # Sets the style of the plot to include gridlines
 
 
-# Set the page config and theme at the very start of your script
-st.set_page_config(
-    page_title="Histogram Analysis",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    theme={"base": "light"}  # Setting the theme to light
-)
+# # Set the page config and theme at the very start of your script
+# st.set_page_config(
+#     page_title="Histogram Analysis",
+#     layout="wide",
+#     initial_sidebar_state="expanded",
+#     theme={"base": "light"}  # Setting the theme to light
+# )
 
 # Decorator for caching data loading
 @st.cache_data
