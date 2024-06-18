@@ -3,7 +3,7 @@ mkdir -p ~/.streamlit/
 
 echo "\
 [theme]
-base = 'light'
+base = light
 " > ~/.streamlit/config.toml
 
 
