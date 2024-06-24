@@ -4,7 +4,8 @@ import pandas as pd
 from charts.Histogram_plot import histogram
 from charts.Box_plot import box_plot
 from charts.Scatter_plot import scatter_plot
-
+from charts.pair_plot import pair_plot
+from charts.parallel_coordinates_plot import parallel_coordinates_plot
 
 
 # Load data
@@ -28,13 +29,19 @@ def show_box_plot():
 def show_scatter_plot():
     scatter_plot(data)
 
+def show_pair_plot():
+    pair_plot(data)
 
+def show_parallel_coordinates_plot():
+    parallel_coordinates_plot(data)
 
 # Map chart types to functions
 chart_functions = {
     'Histogram': show_histogram,
     'Box_Plot': show_box_plot,
     'Scatter_plot': show_scatter_plot,
+    'pair_plot': show_pair_plot,
+    'parallel_coordinates_plot': show_parallel_coordinates_plot,
 }
 
 # Display the appropriate chart based on URL parameter
