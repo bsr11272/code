@@ -42,5 +42,49 @@ def box_plot(data):
 
     # Labels
     ax.set_xlabel(column, fontsize=14)
-    ax.set_ylabel("Value", fontsize=14)
     st.pyplot(fig)
+    
+    # Provide code example
+    st.markdown("""
+        ### Python Code for Creating a Box Plot
+        ```python
+        import seaborn as sns
+        import matplotlib.pyplot as plt
+        import pandas as pd
+
+        # Load your data
+        data = pd.read_csv('your_data.csv')
+
+        # Create the box plot
+        sns.set(style="whitegrid")
+        fig, ax = plt.subplots()
+        sns.boxplot(x=data['your_column'])
+        ax.set_xlabel('Your Column')
+        ax.set_ylabel('Value')
+        plt.show()
+        ```
+        """, unsafe_allow_html=True)
+
+    # Utilize an expander for further explanation
+    with st.expander("See Explanation"):
+        st.markdown("""
+            ### Detailed Explanation of the Box Plot Code
+
+            **1. Importing Libraries:**
+            - `import seaborn as sns`: Imports Seaborn, a statistical data visualization library based on Matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics.
+            - `import matplotlib.pyplot as plt`: Imports Matplotlib's pyplot, a module that provides a MATLAB-like interface. It is used here for creating figures and axes.
+            - `import pandas as pd`: Imports Pandas, which is used for data manipulation and analysis, and here it is primarily used to load and handle the dataset.
+
+            **2. Loading Data:**
+            - `data = pd.read_csv('your_data.csv')`: Loads data from a CSV file into a Pandas DataFrame. This line assumes that your data is in the same directory as your script or specifies the path to where your data resides.
+
+            **3. Creating the Box Plot:**
+            - `sns.set(style="whitegrid")`: Sets the aesthetic style of the plots. This style is suitable for plots with heavy data elements and to highlight outliers.
+            - `fig, ax = plt.subplots()`: Creates a figure and a set of subplots. This is where our plot will actually be drawn.
+            - `sns.boxplot(x=data['your_column'])`: Creates a box plot for 'your_column' from the dataset.
+            - `ax.set_xlabel('Your Column')`: Sets the label for the x-axis.
+            - `ax.set_ylabel('Value')`: Sets the label for the y-axis.
+            - `plt.show()`: Displays the plot.
+
+            Box plots are very useful for showing the distribution of data through their quartiles and for spotting outliers.
+        """, unsafe_allow_html=True)
