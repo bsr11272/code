@@ -9,34 +9,40 @@ def pair_plot(data):
     sns.set(style="whitegrid")
 
     # Sidebar controls for selecting columns and hue
-    st.sidebar.header('Pair Plot Settings')
-    # Filter numerical columns for the pair plot
+    st.sidebar.header('Enhanced Pair Plot Settings')
+    
+    # Selection of columns
     available_columns = data.select_dtypes(include=[np.number]).columns.tolist()
     selected_columns = st.sidebar.multiselect("Select columns to include in the plot:", available_columns, default=available_columns[:min(3, len(available_columns))])
 
-    # Only allow selection of categorical columns for the hue
+    # Selection of categories for hue
     categorical_columns = data.select_dtypes(include=['object', 'category']).columns.tolist()
-    if not categorical_columns:  # Check if there are any categorical columns
-        st.sidebar.error("No categorical columns available for hue!")
-        hue_option = None
-    else:
+    if categorical_columns:
         hue_option = st.sidebar.selectbox("Choose the column for Hue (color)", categorical_columns)
-
-    # Check if any columns are selected to generate the plot
-    if not selected_columns or hue_option is None:
-        st.warning("Please select at least one column and one hue option to display the plot.")
+        categories = data[hue_option].unique()
+        active_categories = st.sidebar.multiselect(f"Select categories to display from selected column: {hue_option}", categories, default=categories)
+    else:
+        st.sidebar.error("No categorical columns available for hue!")
         return
+
+    # Check if any columns and categories are selected to generate the plot
+    if not selected_columns or not active_categories:
+        st.warning("Please select at least one column and one category to display the plot.")
+        return
+
+    # Filter data based on active categories
+    filtered_data = data[data[hue_option].isin(active_categories)]
 
     # Display the multivariate plot
     st.markdown(f"""<div style='text-align: center;'>
-                <strong style='font-size: 18px; color: darkblue;'>Pair Plot with Columns: {', '.join(selected_columns)}</strong></div>""",
+                <strong style='font-size: 18px; color: darkblue;'>Pair Plot with Columns: {', '.join(selected_columns)} and Categories: {', '.join(active_categories)}</strong></div>""",
                 unsafe_allow_html=True)
 
     # Creating the pairplot
-    pairplot_fig = sns.pairplot(data[selected_columns + [hue_option]], hue=hue_option, markers=["o", "s", "D"])
-    
+    pairplot_fig = sns.pairplot(filtered_data[selected_columns + [hue_option]], hue=hue_option, markers=["o", "s", "D"])
+
     # Show the plot
-    st.pyplot(pairplot_fig)
+    st.pyplot(pairplot_fig.figure)
 
     # Provide code example and explanations
     st.markdown("""
@@ -72,3 +78,6 @@ def pair_plot(data):
             - This type of plot is particularly useful for exploring correlations and relationships between numerical data points. By coloring data points with a categorical variable, it helps in understanding how relationships vary by group.
 
         """, unsafe_allow_html=True)
+
+
+
