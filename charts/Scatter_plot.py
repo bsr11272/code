@@ -29,7 +29,7 @@ def scatter_plot(data):
 
     # Provide code example and explanations
     st.markdown("""
-        ### Python Code for Creating a Scatter Plot with Gender Hue
+        ### Python Code for Creating a Scatter Plot with Sex Hue
         ```python
         import seaborn as sns
         import matplotlib.pyplot as plt
