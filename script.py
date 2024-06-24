@@ -3,6 +3,9 @@ import pandas as pd
 
 from charts.Histogram_plot import histogram
 from charts.Box_plot import box_plot
+from charts.Scatter_plot import scatter_plot
+
+
 
 # Load data
 @st.cache_data
@@ -21,10 +24,17 @@ def show_histogram():
 
 def show_box_plot():
     box_plot(data)
+
+def show_scatter_plot():
+    scatter_plot(data)
+
+
+
 # Map chart types to functions
 chart_functions = {
     'Histogram': show_histogram,
     'Box_Plot': show_box_plot,
+    'Scatter_plot': show_scatter_plot,
 }
 
 # Display the appropriate chart based on URL parameter
