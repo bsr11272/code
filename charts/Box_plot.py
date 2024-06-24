@@ -14,7 +14,7 @@ def box_plot(data):
 
     # Display the box plot
     st.markdown(f"""<div style='text-align: center;'>
-                <strong style='font-size: 18px; color: darkblue;'>Detailed Box Plot for {column}</strong></div>""",
+                <strong style='font-size: 18px; color: darkblue;'>Box Plot for column: {column}</strong></div>""",
                 unsafe_allow_html=True)
 
     fig, ax = plt.subplots()

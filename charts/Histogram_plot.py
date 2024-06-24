@@ -17,7 +17,7 @@ def histogram(data):
 
     # Display the histogram
     st.markdown(f"""<div style='text-align: center;'>
-                <strong style='font-size: 18px; color: darkblue;'>Histogram for {column} with {bins} bins</strong></div>""", 
+                <strong style='font-size: 18px; color: darkblue;'>Histogram for Column: {column} with {bins} bins</strong></div>""", 
                 unsafe_allow_html=True)
 
     fig, ax = plt.subplots()
